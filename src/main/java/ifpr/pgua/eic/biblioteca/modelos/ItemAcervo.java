@@ -45,4 +45,8 @@ public abstract class ItemAcervo {
         this.titulo = titulo;
     }
 
+    public String toString(){
+        return titulo;
+    }
+
 }

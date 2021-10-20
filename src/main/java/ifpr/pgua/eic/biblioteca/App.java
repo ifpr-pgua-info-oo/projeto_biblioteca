@@ -2,15 +2,19 @@ package ifpr.pgua.eic.biblioteca;
 
 import ifpr.pgua.eic.biblioteca.repositorios.Biblioteca;
 import ifpr.pgua.eic.biblioteca.telas.CadastroAutor;
+import ifpr.pgua.eic.biblioteca.telas.CadastroRevista;
 import ifpr.pgua.eic.biblioteca.telas.Listas;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 
 /**
@@ -52,6 +56,15 @@ public class App extends Application {
 
         botoes.getChildren().addAll(btCadastroAutor);
         
+
+        Button btCadastroRevista = new Button("Cadastro Revista");
+        btCadastroRevista.setOnAction((evt)->{
+            central.getChildren().clear();
+            central.getChildren().add(loadTela("fxml/cadastro_revista.fxml", (o)->new CadastroRevista(biblioteca)));
+        });
+
+        botoes.getChildren().add(btCadastroRevista);
+
         root.setCenter(central);
         root.setLeft(botoes);
 
@@ -59,6 +72,22 @@ public class App extends Application {
         
         stage.setScene(scene);
         stage.show();
+    }
+
+    
+    private Parent loadTela(String fxml, Callback controller){
+        Parent root = null;
+        try{
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxml));
+            loader.setControllerFactory(controller);
+
+            root = loader.load();
+            
+        }catch (Exception e){
+            System.out.println("Problema no arquivo fxml. Está correto?? "+fxml);
+        }
+        return root;   
     }
 
 

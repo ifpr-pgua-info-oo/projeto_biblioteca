@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+
+<VBox xmlns="http://javafx.com/javafx" 
+      xmlns:fx="http://javafx.com/fxml" 
+      prefHeight="400.0" prefWidth="600.0"
+      spacing="5.0"
+      fx:controller="ifpr.pgua.eic.biblioteca.telas.CadastroRevista"
+      >
+
+    <padding>
+        <!--
+        <Insets right="8.0" left="8.0" bottom="8.0" top="8.0"/>-->
+        <Insets topRightBottomLeft="8.0"/>
+    </padding>
+
+    <Label text="Título:" labelFor="$tfTitulo"/>
+    <TextField fx:id="tfTitulo"/>
+
+    <Label text="Editora:" labelFor="$tfEditora"/>
+    <TextField fx:id="tfEditora"/> 
+
+    <Label text="Número:" labelFor="$tfNumero"/>
+    <TextField fx:id="tfNumero"/>
+    
+    <Label text="Ano de Publicação:" labelFor="$tfAnoPublicacao"/>
+    <TextField fx:id="tfAnoPublicacao"/>
+    
+    <Label text="Número de Páginas:" labelFor="$tfPaginas"/>
+    <TextField fx:id="tfPaginas"/>
+
+    <HBox spacing="5.0">
+        <Button text="Adicionar" onAction="#cadastrar"/>
+        <Button text="Limpar" onAction="#limpar"/>
+    </HBox>
+    
+</VBox>

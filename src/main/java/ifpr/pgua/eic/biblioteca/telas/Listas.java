@@ -41,6 +41,8 @@ public class Listas {
         root.getChildren().add(listaAutores);
         
         listaAcervo = new ListView<>();
+        listaAcervo.getItems().addAll(biblioteca.getRevistas());
+        listaAcervo.getItems().addAll(biblioteca.getLivros());
         root.getChildren().add(listaAcervo);
 
     }
