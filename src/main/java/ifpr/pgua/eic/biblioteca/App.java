@@ -2,6 +2,7 @@ package ifpr.pgua.eic.biblioteca;
 
 import ifpr.pgua.eic.biblioteca.repositorios.Biblioteca;
 import ifpr.pgua.eic.biblioteca.telas.CadastroAutor;
+import ifpr.pgua.eic.biblioteca.telas.CadastroRevista;
 import ifpr.pgua.eic.biblioteca.telas.Listas;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -55,6 +56,15 @@ public class App extends Application {
 
         botoes.getChildren().addAll(btCadastroAutor);
         
+
+        Button btCadastroRevista = new Button("Cadastro Revista");
+        btCadastroRevista.setOnAction((evt)->{
+            central.getChildren().clear();
+            central.getChildren().add(loadTela("fxml/cadastro_revista.fxml", (o)->new CadastroRevista(biblioteca)));
+        });
+
+        botoes.getChildren().add(btCadastroRevista);
+
         root.setCenter(central);
         root.setLeft(botoes);
 
