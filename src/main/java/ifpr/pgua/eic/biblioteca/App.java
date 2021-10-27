@@ -2,6 +2,7 @@ package ifpr.pgua.eic.biblioteca;
 
 import ifpr.pgua.eic.biblioteca.repositorios.Biblioteca;
 import ifpr.pgua.eic.biblioteca.telas.CadastroAutor;
+import ifpr.pgua.eic.biblioteca.telas.CadastroLivro;
 import ifpr.pgua.eic.biblioteca.telas.CadastroRevista;
 import ifpr.pgua.eic.biblioteca.telas.Listas;
 import javafx.application.Application;
@@ -32,6 +33,8 @@ public class App extends Application {
         
         biblioteca = new Biblioteca();
         root = new BorderPane();
+
+        root.getStylesheets().add(getClass().getResource("css/estilo.css").toExternalForm());
 
         central = new StackPane();
         botoes = new VBox();
@@ -65,6 +68,15 @@ public class App extends Application {
 
         botoes.getChildren().add(btCadastroRevista);
 
+        Button btCadastroLivro = new Button("Cadastro Livro");
+        btCadastroLivro.setOnAction((evt)->{
+            central.getChildren().clear();
+            central.getChildren().add(loadTela("fxml/cadastro_livro.fxml", (o)->new CadastroLivro(biblioteca)));
+        });
+
+        botoes.getChildren().add(btCadastroLivro);
+
+        
         root.setCenter(central);
         root.setLeft(botoes);
 

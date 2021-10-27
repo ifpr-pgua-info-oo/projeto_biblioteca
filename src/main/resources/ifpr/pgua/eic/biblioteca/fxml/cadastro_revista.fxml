@@ -14,6 +14,7 @@
       prefHeight="400.0" prefWidth="600.0"
       spacing="5.0"
       fx:controller="ifpr.pgua.eic.biblioteca.telas.CadastroRevista"
+      stylesheets="@../css/estilo_cadastro_revista.css"
       >
 
     <padding>
@@ -22,7 +23,7 @@
         <Insets topRightBottomLeft="8.0"/>
     </padding>
 
-    <Label text="Título:" labelFor="$tfTitulo"/>
+    <Label fx:id="lbTitulo" text="Título:" labelFor="$tfTitulo"/>
     <TextField fx:id="tfTitulo"/>
 
     <Label text="Editora:" labelFor="$tfEditora"/>
@@ -35,11 +36,11 @@
     <TextField fx:id="tfAnoPublicacao"/>
     
     <Label text="Número de Páginas:" labelFor="$tfPaginas"/>
-    <TextField fx:id="tfPaginas"/>
+    <TextField fx:id="tfPaginas" />
 
     <HBox spacing="5.0">
         <Button text="Adicionar" onAction="#cadastrar"/>
-        <Button text="Limpar" onAction="#limpar"/>
+        <Button text="Limpar" onAction="#limpar" styleClass="botao-limpar"/>
     </HBox>
     
 </VBox>
