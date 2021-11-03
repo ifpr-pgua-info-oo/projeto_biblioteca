@@ -4,6 +4,7 @@ import ifpr.pgua.eic.biblioteca.repositorios.Biblioteca;
 import ifpr.pgua.eic.biblioteca.telas.CadastroAutor;
 import ifpr.pgua.eic.biblioteca.telas.CadastroLivro;
 import ifpr.pgua.eic.biblioteca.telas.CadastroRevista;
+import ifpr.pgua.eic.biblioteca.telas.Home;
 import ifpr.pgua.eic.biblioteca.telas.Listas;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -24,74 +25,30 @@ import javafx.util.Callback;
 public class App extends Application {
 
     private Biblioteca biblioteca;
-    private StackPane central;
-    private VBox botoes;
-    private BorderPane root;
-
+    
     @Override
     public void start(Stage stage) {
         
         biblioteca = new Biblioteca();
-        root = new BorderPane();
-
-        root.getStylesheets().add(getClass().getResource("css/estilo.css").toExternalForm());
-
-        central = new StackPane();
-        botoes = new VBox();
-
-        botoes.setSpacing(5.0);
-        botoes.setPadding(new Insets(8.0));
         
-        Button btListas = new Button("Listas");
-        btListas.setOnAction((evt)->{
-            central.getChildren().clear();
-            central.getChildren().add(new Listas(biblioteca).getRoot());
-        });
+        /*SOMENTE EM TEMPO DE DESENVOLVIMENTO*/
+        /*DESABILITAR EM PRODUCAO*/
+        biblioteca.povoa();
 
-        botoes.getChildren().add(btListas);
+        Parent root = loadTela("fxml/home.fxml", (o)->new Home(biblioteca));
 
-        Button btCadastroAutor = new Button("Cadastro Autor");
-        btCadastroAutor.setOnAction((evt)->{
-            central.getChildren().clear();
-            CadastroAutor telaAutor = new CadastroAutor(biblioteca);
-            central.getChildren().add(telaAutor.getRoot());
-        });
-
-        botoes.getChildren().addAll(btCadastroAutor);
-        
-
-        Button btCadastroRevista = new Button("Cadastro Revista");
-        btCadastroRevista.setOnAction((evt)->{
-            central.getChildren().clear();
-            central.getChildren().add(loadTela("fxml/cadastro_revista.fxml", (o)->new CadastroRevista(biblioteca)));
-        });
-
-        botoes.getChildren().add(btCadastroRevista);
-
-        Button btCadastroLivro = new Button("Cadastro Livro");
-        btCadastroLivro.setOnAction((evt)->{
-            central.getChildren().clear();
-            central.getChildren().add(loadTela("fxml/cadastro_livro.fxml", (o)->new CadastroLivro(biblioteca)));
-        });
-
-        botoes.getChildren().add(btCadastroLivro);
-
-        
-        root.setCenter(central);
-        root.setLeft(botoes);
-
-        Scene scene = new Scene(root, 640, 480);
+        Scene scene = new Scene(root, 720, 480);
         
         stage.setScene(scene);
         stage.show();
     }
 
     
-    private Parent loadTela(String fxml, Callback controller){
+    public static Parent loadTela(String fxml, Callback controller){
         Parent root = null;
         try{
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource(fxml));
+            loader.setLocation(App.class.getResource(fxml));
             loader.setControllerFactory(controller);
 
             root = loader.load();
