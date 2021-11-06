@@ -7,7 +7,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="root" prefHeight="600" prefWidth="400" stylesheets="@../css/estilo.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ifpr.pgua.eic.biblioteca.telas.Home">
+<BorderPane fx:id="root" 
+             prefHeight="600" 
+             prefWidth="400" 
+             stylesheets="@../css/estilo.css" 
+             xmlns="http://javafx.com/javafx/17" 
+             xmlns:fx="http://javafx.com/fxml/1" 
+             fx:controller="ifpr.pgua.eic.biblioteca.telas.Home">
 
     <left>
 

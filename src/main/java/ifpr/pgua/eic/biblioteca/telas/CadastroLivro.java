@@ -1,5 +1,7 @@
 package ifpr.pgua.eic.biblioteca.telas;
 
+import java.time.LocalDate;
+
 import ifpr.pgua.eic.biblioteca.modelos.Autor;
 import ifpr.pgua.eic.biblioteca.repositorios.Biblioteca;
 import javafx.event.ActionEvent;
@@ -7,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 
@@ -16,7 +19,7 @@ public class CadastroLivro {
     private ComboBox<Autor> cbAutores;
 
     @FXML
-    private TextField tfAnoPublicacao;
+    private DatePicker datePickerAno;
 
     @FXML
     private TextField tfCapitulos;
@@ -47,7 +50,10 @@ public class CadastroLivro {
     void adicionar(ActionEvent event) {
         String titulo = tfTitulo.getText();
         String editora = tfEditora.getText();
-        int anoPublicacao = Integer.valueOf(tfAnoPublicacao.getText());
+        //int anoPublicacao = Integer.valueOf(tfAnoPublicacao.getText());
+        LocalDate dataSelecionada = datePickerAno.getValue();
+        int anoPublicacao = dataSelecionada.getYear();
+        
         int paginas = Integer.valueOf(tfPaginas.getText());
         int capitulos = Integer.valueOf(tfCapitulos.getText());
         Autor autor = cbAutores.getSelectionModel().getSelectedItem();
@@ -77,7 +83,7 @@ public class CadastroLivro {
     @FXML
     void limpar(ActionEvent event) {
         tfTitulo.clear();
-        tfAnoPublicacao.clear();
+        datePickerAno.setValue(LocalDate.now());
         tfCapitulos.clear();
         tfEditora.clear();
         tfPaginas.clear();
