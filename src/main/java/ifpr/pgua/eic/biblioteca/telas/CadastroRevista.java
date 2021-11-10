@@ -63,5 +63,4 @@ public class CadastroRevista {
         tfPaginas.setText("");  
     }
 
-
 }
