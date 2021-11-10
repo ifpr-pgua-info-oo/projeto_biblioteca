@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" prefHeight="400" prefWidth="600" fx:controller="ifpr.pgua.eic.biblioteca.telas.Listas">
+    <padding>
+        <Insets topRightBottomLeft="8.0" />
+    </padding>
+    <center>
+        <FlowPane vgap="5.0" hgap="5.0">
+            <padding>
+                <Insets topRightBottomLeft="8.0" />
+            </padding>
+
+            <VBox spacing="5.0">
+                <TextField fx:id="tfNomeAutor" promptText="Digite para pesquisar" onKeyTyped="#filtraAutores" />
+                <ListView fx:id="listaAutores" onMouseClicked="#atualizaStatus"/>
+            </VBox>
+
+            <VBox spacing="9.0">
+                <HBox spacing="5.0">
+                    <fx:define>
+                        <ToggleGroup fx:id="grupo1" />
+                    </fx:define>
+                    <RadioButton fx:id="rbTodos" text="Todos" toggleGroup="$grupo1" onAction="#mostraAcervo" />
+                    <RadioButton fx:id="rbLivros" text="Livros" toggleGroup="$grupo1" onAction="#mostraAcervo" />
+                    <RadioButton fx:id="rbRevistas" text="Revistas" toggleGroup="$grupo1" onAction="#mostraAcervo" />
+                </HBox>
+
+                <ListView fx:id="listaAcervo" onMouseClicked="#atualizaStatus"/>
+            </VBox>
+        </FlowPane>
+    </center>
+    <bottom>
+        <VBox>
+            <padding>
+                <Insets topRightBottomLeft="8.0" />
+            </padding>
+            <TextArea fx:id="taStatus" />
+        </VBox>
+    </bottom>
+
+</BorderPane>

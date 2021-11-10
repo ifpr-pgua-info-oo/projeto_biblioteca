@@ -64,6 +64,8 @@ public class CadastroAutor {
 
         
         btLimpar = new Button("Limpar");
+        //btLimpar.setStyle("-fx-background-color: red; -fx-text-fill:blue; -fx-background-radius: 10px");
+        btLimpar.getStyleClass().add("botao-limpar");
         btLimpar.setOnAction((evento)->{
             limpar();
         });

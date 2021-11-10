@@ -1,0 +1,21 @@
+.button{
+    -fx-background-color: #d6a63f;
+    -fx-text-fill: purple;
+}
+
+.text-field{
+    -fx-font-size: 10;
+    -fx-text-fill: red;
+}
+
+#lbTitulo{
+    -fx-font-size: 20;
+    -fx-text-fill: green;
+
+}
+
+.botao-limpar{
+    -fx-background-color: rgb(235, 122, 210); 
+    -fx-text-fill:green; 
+    -fx-background-radius: 10px;
+}

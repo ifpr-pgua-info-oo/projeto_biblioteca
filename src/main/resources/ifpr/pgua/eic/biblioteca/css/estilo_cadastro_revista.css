@@ -1,0 +1,6 @@
+.text-field{
+    -fx-background-color: rgb(165, 162, 162);
+    -fx-background-radius: 20px;
+    -fx-font-size: 15;
+    -fx-text-fill: yellow;
+}

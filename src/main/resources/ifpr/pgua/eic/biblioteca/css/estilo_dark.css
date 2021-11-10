@@ -1,0 +1,30 @@
+
+.root{
+    -fx-background-color: #121212;
+}
+
+.button{
+    -fx-background-color: #c7c5c5;
+    -fx-text-fill: rgb(204, 97, 204);
+}
+
+.text-field{
+    -fx-font-size: 10;
+    -fx-text-fill: red;
+}
+
+.clipped-container{
+    -fx-background-color: #c7c5c5;
+}
+
+#lbTitulo{
+    -fx-font-size: 20;
+    -fx-text-fill: green;
+
+}
+
+.botao-limpar{
+    -fx-background-color: rgb(235, 122, 210); 
+    -fx-text-fill:green; 
+    -fx-background-radius: 10px;
+}
