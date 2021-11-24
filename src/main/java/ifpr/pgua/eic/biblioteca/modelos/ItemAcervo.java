@@ -1,6 +1,8 @@
 package ifpr.pgua.eic.biblioteca.modelos;
 
-public abstract class ItemAcervo {
+import java.io.Serializable;
+
+public abstract class ItemAcervo implements Serializable {
     private String titulo;
     private int anoPublicacao;
     private int numeroPaginas;
@@ -47,6 +49,10 @@ public abstract class ItemAcervo {
 
     public String toString(){
         return titulo;
+    }
+
+    public String paraTexto(){
+        return titulo+";"+anoPublicacao+";"+editora+";"+numeroPaginas;
     }
 
 }

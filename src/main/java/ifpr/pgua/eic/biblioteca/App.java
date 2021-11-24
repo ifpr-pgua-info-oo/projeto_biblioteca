@@ -27,14 +27,17 @@ public class App extends Application {
     private Biblioteca biblioteca;
     
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage) throws Exception {
         
         biblioteca = new Biblioteca();
         
         /*SOMENTE EM TEMPO DE DESENVOLVIMENTO*/
         /*DESABILITAR EM PRODUCAO*/
-        biblioteca.povoa();
+        //biblioteca.povoa();
 
+        biblioteca.leDadosTxt();
+        //biblioteca.leDadosBin();
+        
         Parent root = loadTela("fxml/home.fxml", (o)->new Home(biblioteca));
 
         Scene scene = new Scene(root, 720, 480);
@@ -43,6 +46,13 @@ public class App extends Application {
         stage.show();
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+
+        biblioteca.salvaDadosTxt();
+        //biblioteca.salvaDadosBin();
+    }
     
     public static Parent loadTela(String fxml, Callback controller){
         Parent root = null;

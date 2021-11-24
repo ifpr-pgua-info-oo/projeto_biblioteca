@@ -1,0 +1,16 @@
+[Autores]
+Ze Autor;ze@teste.com;001
+Blah Autor;blah@teste.com;002
+Bleh Autor;bleh@teste.com;003
+Blih Autor;blih@teste.com;004
+Xico Autor;xico@teste.com;005
+[Revistas]
+Revista 1;1;Editora 1;1;1
+Revista 2;2;Editora 2;2;2
+Revista 3;3;Editora 3;3;3
+Revista 4;4;Editora 4;4;4
+[Livros]
+Livro 1;1;Editora 1;1;1;001
+Livro 2;2;Editora 2;2;2;002
+Livro 3;3;Editora 3;3;3;003
+Livro 4;4;Editora 4;4;4;004

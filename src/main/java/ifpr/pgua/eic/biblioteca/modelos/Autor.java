@@ -1,6 +1,8 @@
 package ifpr.pgua.eic.biblioteca.modelos;
 
-public class Autor {
+import java.io.Serializable;
+
+public class Autor implements Serializable {
     private String nome;
     private String email;
     private String cpf;
@@ -38,6 +40,9 @@ public class Autor {
     public String toString(){
         return nome;
     }
-   
+    
+    public String paraTexto(){
+        return nome+";"+email+";"+cpf;
+    }
 
 }

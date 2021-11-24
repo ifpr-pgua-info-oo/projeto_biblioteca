@@ -1,5 +1,15 @@
 package ifpr.pgua.eic.biblioteca.repositorios;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import ifpr.pgua.eic.biblioteca.modelos.Autor;
@@ -12,7 +22,8 @@ public class Biblioteca {
     private ArrayList<Autor> autores;
     private ArrayList<ItemAcervo> acervo;
 
-
+    private static final String NOME_ARQUIVO_TXT = "dados.txt";
+    private static final String NOME_ARQUIVO_BIN = "dados.bin";
 
     public Biblioteca(){
         autores = new ArrayList<>();
@@ -137,7 +148,136 @@ public class Biblioteca {
         return revistas;
     }
 
+    public void salvaDadosTxt() throws IOException {
 
+        File arq = new File(NOME_ARQUIVO_TXT);
+        FileWriter fw = new FileWriter(arq);
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        bw.write("[Autores]");
+        bw.newLine();
+        for(Autor a:autores){
+            bw.write(a.paraTexto());
+            bw.newLine();
+        }
+
+        bw.write("[Revistas]");
+        bw.newLine();
+        for(ItemAcervo item:acervo){
+            if(item instanceof Revista){
+                bw.write(item.paraTexto());
+                bw.newLine();
+            }
+        }
+        bw.write("[Livros]");
+        bw.newLine();
+        for(ItemAcervo item:acervo){
+            if(item instanceof Livro){
+                bw.write(item.paraTexto());
+                bw.newLine();
+            }
+        }
+        
+
+        bw.close();
+        fw.close();
+    
+    }
+
+    public void leDadosTxt() throws IOException{
+        File arq = new File(NOME_ARQUIVO_TXT);
+        FileReader fr = new FileReader(arq);
+        BufferedReader br = new BufferedReader(fr);
+
+        String linha = br.readLine();
+        int tipo = 0;
+        
+        while(linha != null){
+
+            switch(linha){
+                case "[Autores]":
+                    tipo = 0;
+                break;
+                case "[Revistas]":
+                    tipo = 1;
+                break;
+                case "[Livros]":
+                    tipo = 2;
+                break;
+            }
+
+            if(! linha.startsWith("[") && linha.length()>0){
+                if(tipo == 0){
+                    String[] partes = linha.split(";");
+                    String nome = partes[0];
+                    String email = partes[1];
+                    String cpf = partes[2];
+
+                    Autor a = new Autor(nome, email, cpf);
+                    this.autores.add(a);
+                }else if(tipo == 1){
+                    String[] partes = linha.split(";");
+                    String titulo = partes[0];
+                    int anoPublicacao = Integer.parseInt(partes[1]);
+                    String editora = partes[2];
+                    int numeroPaginas = Integer.parseInt(partes[3]);
+                    int numero = Integer.parseInt(partes[4]);
+                    
+                    Revista revista = new Revista(titulo, numero, anoPublicacao, numeroPaginas, editora);
+
+                    this.acervo.add(revista);
+
+                }
+                else if(tipo == 2){
+                    String[] partes = linha.split(";");
+                    String titulo = partes[0];
+                    int anoPublicacao = Integer.parseInt(partes[1]);
+                    String editora = partes[2];
+                    int numeroPaginas = Integer.parseInt(partes[3]);
+                    int numeroCapitulos = Integer.parseInt(partes[4]);
+                    String cpfAutor = partes[5];
+
+                    Autor autor = buscaAutorCpf(cpfAutor);
+
+                    Livro l = new Livro(titulo, autor, anoPublicacao, numeroPaginas, editora, numeroCapitulos);
+
+                    this.acervo.add(l);
+
+                }
+            }
+
+
+            linha = br.readLine();
+        }
+
+    }
+
+    public void salvaDadosBin() throws IOException{
+        File arq = new File(NOME_ARQUIVO_BIN);
+        FileOutputStream fos = new FileOutputStream(arq);
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+
+        oos.writeObject(autores);
+        oos.writeObject(acervo);
+
+        oos.close();
+        fos.close();
+    }   
+
+    public void leDadosBin() throws IOException,ClassNotFoundException{
+
+        File arq = new File(NOME_ARQUIVO_BIN);
+        FileInputStream fis = new FileInputStream(arq);
+        ObjectInputStream ois = new ObjectInputStream(fis);
+
+        autores = (ArrayList) ois.readObject();
+        acervo = (ArrayList) ois.readObject();
+
+        ois.close();
+        fis.close();
+
+
+    }
 
 
 

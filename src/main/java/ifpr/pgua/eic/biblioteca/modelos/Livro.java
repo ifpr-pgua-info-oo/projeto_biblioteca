@@ -1,11 +1,11 @@
 package ifpr.pgua.eic.biblioteca.modelos;
 
-public class Livro extends ItemAcervo{
+import java.io.Serializable;
+
+public class Livro extends ItemAcervo {
     private int numeroCapitulos;
     private Autor autor;
     
-
-
     public Livro(String titulo, Autor autor, int anoPublicacao, int numeroPaginas, String editora, int numeroCapitulos
             ) {
         super(titulo, anoPublicacao, numeroPaginas, editora);
@@ -28,4 +28,9 @@ public class Livro extends ItemAcervo{
     public void setNumeroCapitulos(int numeroCapitulos) {
         this.numeroCapitulos = numeroCapitulos;
     } 
+
+    public String paraTexto(){
+        return super.paraTexto()+";"+numeroCapitulos+";"+autor.getCpf();
+    }
+
 }

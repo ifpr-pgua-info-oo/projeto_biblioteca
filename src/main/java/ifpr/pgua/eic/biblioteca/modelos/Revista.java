@@ -3,6 +3,7 @@ package ifpr.pgua.eic.biblioteca.modelos;
 public class Revista extends ItemAcervo{
     private int numero;
 
+
     public Revista(String titulo, int numero, int anoPublicacao, int numeroPaginas, String editora) {
         super(titulo, anoPublicacao, numeroPaginas, editora);
         this.numero = numero;
@@ -16,5 +17,8 @@ public class Revista extends ItemAcervo{
         this.numero = numero;
     }
 
+    public String paraTexto(){
+        return super.paraTexto()+";"+numero;
+    }
 
 }
